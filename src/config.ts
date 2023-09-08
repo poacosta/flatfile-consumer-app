@@ -40,12 +40,11 @@ export const config: Pick<
     ],
     actions: [
         {
-            label: "Submit",
-            operation: "contacts:submit",
-            description: "Would you like to submit your workbook?",
-            mode: "foreground",
-            primary: true,
-            confirm: true,
-        },
+            "operation": "submitAction",
+            "mode": "foreground",
+            "label": "Submit",
+            "description": "Submit data to webhook.site",
+            "primary": true
+        }
     ],
 };
