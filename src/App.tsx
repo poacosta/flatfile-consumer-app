@@ -9,8 +9,8 @@ const ExampleApp = () => {
 
     const space = useSpace({
         name: 'Embedded Space',
-        publishableKey: 'pk_d504d01543244ac89f5b701b25ded260',
-        environmentId: 'us_env_l4iti0WA',
+        publishableKey: process.env.REACT_APP_PUBLISHABLE_KEY || '',
+        environmentId: process.env.REACT_APP_ENVIRONMENT_ID || '',
         workbook: config,
         listener: listener,
         closeSpace: {
