@@ -1,26 +1,36 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useSpace } from '@flatfile/react'
+import { config } from './config'
+import { listener } from './listener'
+import { useState } from 'react'
 
-function App() {
+const ExampleApp = () => {
+    const [showSpace, setShowSpace] = useState(false)
+
+    const space = useSpace({
+        name: 'Embedded Space',
+        publishableKey: 'pk_d504d01543244ac89f5b701b25ded260',
+        environmentId: 'us_env_l4iti0WA',
+        workbook: config,
+        listener: listener,
+        closeSpace: {
+            operation: 'contacts:submit',
+            onClose: () => setShowSpace(false)
+        }
+    })
+
     return (
-        <div className="App">
-            <header className="App-header">
-                <img src={logo} className="App-logo" alt="logo"/>
-                <p>
-                    Edit <code>src/App.tsx</code> and save to reload.
-                </p>
-                <a
-                    className="App-link"
-                    href="https://reactjs.org"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    Learn React
-                </a>
-            </header>
+        <div style={{ padding: "16px" }}>
+            <button
+                onClick={() => {
+                    setShowSpace(!showSpace);
+                }}
+            >
+                {showSpace === true ? "Close" : "Open"} space
+            </button>
+            {showSpace && space}
         </div>
     );
 }
 
-export default App;
+export default ExampleApp;
